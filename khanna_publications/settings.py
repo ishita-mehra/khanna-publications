@@ -29,6 +29,16 @@ if not SECRET_KEY:
 
 ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', 'localhost,127.0.0.1')
 
+# Allow the Render domain
+RENDER_DOMAIN = os.environ.get('RENDER_EXTERNAL_HOSTNAME')  # Render sets this automatically
+if RENDER_DOMAIN and RENDER_DOMAIN not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(RENDER_DOMAIN)
+
+# Also trust it for CSRF
+CSRF_TRUSTED_ORIGINS = []
+if RENDER_DOMAIN:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{RENDER_DOMAIN}')
+
 # Railway provides RAILWAY_PUBLIC_DOMAIN at build time
 RAILWAY_DOMAIN = os.environ.get('RAILWAY_PUBLIC_DOMAIN')
 if RAILWAY_DOMAIN and RAILWAY_DOMAIN not in ALLOWED_HOSTS:
