@@ -1,0 +1,86 @@
+{% load static %}
+
+<!-- ===== Announcement marquee (SVG icons, no emojis) ===== -->
+<div class="marquee bg-ink text-cream text-[11px] sm:text-xs tracking-[0.18em] uppercase py-2.5 overflow-hidden">
+  <div class="marquee-track">
+    {% for _ in "12" %}
+      <span class="marquee-item">
+        <svg class="marquee-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+        Free Pan-India Delivery
+      </span>
+      <span class="marquee-item">
+        <svg class="marquee-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l1.5 5.5L19 10l-5.5 1.5L12 17l-1.5-5.5L5 10l5.5-1.5z"/>
+        </svg>
+        Premium Print Finish
+      </span>
+      <span class="marquee-item">
+        <svg class="marquee-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/>
+        </svg>
+        Wholesale Available
+      </span>
+      <span class="marquee-item">
+        <svg class="marquee-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/>
+        </svg>
+        No COD
+      </span>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- ===== Navbar ===== -->
+<header id="site-header" class="sticky top-0 z-50 transition-all duration-300 border-b border-transparent">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between h-[72px]">
+
+    <a href="{% url 'store:home' %}" class="group flex items-center gap-2.5">
+      <span class="w-9 h-9 rounded-lg bg-ink text-cream grid place-items-center font-display font-black text-lg
+                   transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-105">K</span>
+      <span class="leading-none">
+        <span class="block font-display font-bold text-[19px] tracking-tight">Khanna</span>
+        <span class="block text-[10px] tracking-[0.28em] uppercase text-ink-muted">Notebooks</span>
+      </span>
+    </a>
+
+    <ul class="hidden lg:flex items-center gap-9 text-[14px] font-medium">
+      <li><a href="{% url 'store:home' %}#categories" class="nav-link">Shop</a></li>
+      <li><a href="{% url 'store:home' %}#featured" class="nav-link">Bestseller</a></li>
+      <li><a href="{% url 'store:home' %}#wholesale" class="nav-link">Wholesale</a></li>
+      <li><a href="{% url 'store:home' %}#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-2.5">
+      <a href="{% url 'store:home' %}#contact"
+         class="hidden sm:inline-flex btn-shine items-center gap-2 bg-ink text-cream text-[13px] font-semibold
+                px-5 py-2.5 rounded-full hover:bg-gold transition-colors duration-300">
+        Order Now
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <button id="menu-toggle" aria-label="Menu"
+              class="lg:hidden w-10 h-10 grid place-items-center rounded-full hover:bg-cream-dark transition">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu"
+       class="lg:hidden overflow-hidden max-h-0 transition-[max-height] duration-500 ease-[cubic-bezier(.22,1,.36,1)] border-t border-ink/5 bg-cream">
+    <ul class="px-6 py-5 space-y-1 text-[15px] font-medium">
+      <li><a href="{% url 'store:home' %}#categories" class="block py-2.5 hover:text-gold transition">Shop</a></li>
+      <li><a href="{% url 'store:home' %}#featured" class="block py-2.5 hover:text-gold transition">Bestseller</a></li>
+      <li><a href="{% url 'store:home' %}#wholesale" class="block py-2.5 hover:text-gold transition">Wholesale</a></li>
+      <li><a href="{% url 'store:home' %}#contact" class="block py-2.5 hover:text-gold transition">Contact</a></li>
+      <li class="pt-3">
+        <a href="{% url 'store:home' %}#contact" class="block text-center bg-ink text-cream py-3 rounded-full font-semibold">Order Now</a>
+      </li>
+    </ul>
+  </div>
+</header>

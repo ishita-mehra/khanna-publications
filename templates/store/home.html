@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ============== HERO ============== -->
+<section class="relative overflow-hidden">
+  <div class="pointer-events-none absolute -top-32 -right-24 w-[520px] h-[520px] rounded-full bg-gold/10 blur-3xl"></div>
+  <div class="pointer-events-none absolute top-40 -left-32 w-[420px] h-[420px] rounded-full bg-cream-deep blur-3xl"></div>
+  <div class="pointer-events-none absolute inset-0 grid-pattern opacity-[0.35]"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-16 pb-20 lg:pt-24 lg:pb-28
+              grid lg:grid-cols-2 gap-14 lg:gap-8 items-center">
+
+    <div class="reveal">
+      <span class="inline-flex items-center gap-2 text-[11px] tracking-[0.22em] uppercase font-semibold
+                   text-gold-dark bg-gold/10 border border-gold/25 px-3.5 py-1.5 rounded-full">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+        Handcrafted in India
+      </span>
+
+      <h1 class="font-display font-black leading-[0.95] tracking-tight mt-6
+                 text-[clamp(2.6rem,7vw,4.6rem)]">
+        Your ideas,<br>
+        <span class="italic font-medium text-gold-dark">beautifully</span> bound.
+      </h1>
+
+      <p class="mt-6 text-[16.5px] leading-relaxed text-ink-muted max-w-[46ch]">
+        Customized notebooks, magazines, business cards, posters and more —
+        printed on premium stock and finished by hand. Free delivery across India.
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-3.5">
+        <a href="#categories"
+           class="btn-shine inline-flex items-center gap-2.5 bg-ink text-cream font-semibold
+                  text-[14px] px-7 py-4 rounded-full hover:bg-gold transition-colors duration-300
+                  shadow-soft hover:shadow-lift">
+          Explore All Products
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="{% url 'store:category' 'notebooks' %}"
+           class="inline-flex items-center gap-2 border border-ink/15 text-ink font-semibold
+                  text-[14px] px-7 py-4 rounded-full hover:border-ink hover:bg-ink hover:text-cream
+                  transition-all duration-300">
+          Shop Notebooks
+        </a>
+      </div>
+
+      <div class="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-[13px] text-ink-muted">
+        <span class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6z"/></svg>
+          4.9 / 5 from 500+ orders
+        </span>
+        <span class="hidden sm:block w-px h-4 bg-ink/15"></span>
+        <span>Free pan-India delivery</span>
+      </div>
+    </div>
+
+    <!-- Floating notebook mockup -->
+    <div class="relative flex justify-center lg:justify-end reveal" data-delay="2">
+      <div class="absolute inset-0 bg-gradient-to-tr from-gold/20 via-transparent to-transparent blur-3xl rounded-full"></div>
+
+      <a href="{% url 'store:category' 'notebooks' %}" class="relative block group animate-float">
+        <div class="relative w-[250px] sm:w-[300px] aspect-[3/4] rounded-2xl bg-white
+                    shadow-lift ring-1 ring-black/5 rotate-[-5deg] p-7 pt-10
+                    transition-transform duration-500 group-hover:rotate-[-2deg] group-hover:scale-[1.02]">
+
+          <div class="absolute -left-3.5 top-9 bottom-9 flex flex-col justify-between">
+            <span class="spiral"></span><span class="spiral"></span><span class="spiral"></span>
+            <span class="spiral"></span><span class="spiral"></span><span class="spiral"></span>
+            <span class="spiral"></span><span class="spiral"></span>
+          </div>
+
+          <div class="h-full flex flex-col">
+            <span class="text-[10px] tracking-[0.3em] uppercase text-ink-muted">Cheema y</span>
+            <h3 class="font-display font-bold text-[26px] leading-tight mt-2">
+              Custom<br>Notebook
+            </h3>
+            <div class="mt-5 h-px bg-ink/10"></div>
+            <div class="mt-5 space-y-2.5 flex-1">
+              <div class="h-1.5 w-full bg-cream-deep rounded-full"></div>
+              <div class="h-1.5 w-4/5 bg-cream-deep rounded-full"></div>
+              <div class="h-1.5 w-3/5 bg-cream-deep rounded-full"></div>
+            </div>
+            <div class="flex items-end justify-between">
+              <span class="text-[11px] text-ink-muted">Spiral / Normal</span>
+              <span class="font-display font-bold text-[22px] text-gold-dark">Rs. 300</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute -bottom-4 -right-2 sm:-right-8 bg-ink text-cream rounded-2xl
+                    px-4 py-3 shadow-lift rotate-[6deg]">
+          <p class="text-[10px] tracking-[0.2em] uppercase text-gold-light">Wholesale</p>
+          <p class="text-[13px] font-semibold">Bulk pricing</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FEATURED (single bestseller) ============== -->
+<section id="featured" class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+  <div class="reveal">
+    <p class="eyebrow">Bestseller</p>
+    <h2 class="font-display font-bold text-[clamp(1.9rem,4.5vw,2.9rem)] leading-tight mt-3">
+      The one everyone orders
+    </h2>
+  </div>
+
+  <div class="mt-12 grid md:grid-cols-2 gap-8 lg:gap-14 items-center reveal" data-delay="1">
+    <div class="relative aspect-[4/3] rounded-3xl overflow-hidden bg-cream-deep ring-1 ring-ink/5 group">
+      <div class="absolute inset-0 grid place-items-center">
+        <span class="font-display text-[13px] tracking-[0.3em] uppercase text-ink-muted/60">Product Photo</span>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    </div>
+
+    <div>
+      <h3 class="font-display font-bold text-[30px] leading-tight">Cheema y Customized Notebooks</h3>
+      <p class="mt-4 text-ink-muted leading-relaxed text-[15.5px]">
+        Fully personalised cover with your name, artwork or logo. Choose spiral or
+        normal binding — both on premium 90 GSM paper with a matte-laminated finish.
+      </p>
+
+      <div class="mt-7 flex items-baseline gap-3">
+        <span class="font-display font-black text-[40px] text-ink">Rs. 300</span>
+        <span class="text-ink-muted text-sm">/ unit · incl. taxes</span>
+      </div>
+
+      <div class="mt-7">
+        <p class="text-[12px] tracking-[0.18em] uppercase font-semibold text-ink-muted mb-3">Binding</p>
+        <div class="flex gap-3">
+          <button type="button" class="opt-pill opt-active">Spiral</button>
+          <button type="button" class="opt-pill">Normal</button>
+        </div>
+      </div>
+
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="{% url 'store:category' 'notebooks' %}"
+           class="btn-shine inline-flex items-center gap-2.5 bg-ink text-cream font-semibold text-[14px]
+                  px-7 py-4 rounded-full hover:bg-gold transition-colors duration-300 shadow-soft">
+          View All Notebooks
+        </a>
+        <a href="#contact"
+           class="inline-flex items-center gap-2 border border-ink/15 font-semibold text-[14px]
+                  px-7 py-4 rounded-full hover:border-ink hover:bg-ink hover:text-cream transition-all duration-300">
+          DM to Order
+        </a>
+      </div>
+
+      <ul class="mt-8 grid sm:grid-cols-2 gap-y-3 gap-x-6 text-[13.5px] text-ink-muted">
+        <li class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Free pan-India delivery
+        </li>
+        <li class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          No COD available
+        </li>
+        <li class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Premium print finish
+        </li>
+        <li class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Wholesale available
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ALL CATEGORIES ============== -->
+<section id="categories" class="py-20 sm:py-24 bg-cream-dark/40 border-y border-ink/5">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">What we make</p>
+      <h2 class="font-display font-bold text-[clamp(1.9rem,4.5vw,3rem)] leading-tight mt-3">
+        Everything we print, in one place.
+      </h2>
+      <p class="mt-4 text-ink-muted leading-relaxed">
+        Pick a category to explore products, finishes and pricing. Every item is
+        fully customisable — send us your design and we'll take it from there.
+      </p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+      {% for cat in categories %}
+        <a href="{% url 'store:category' cat.slug %}"
+           class="category-card reveal"
+           {% if forloop.counter0|divisibleby:4 %}data-delay="1"{% elif forloop.counter0|divisibleby:2 %}data-delay="2"{% endif %}>
+
+          {% if cat.featured %}
+            <span class="cat-badge">Bestseller</span>
+          {% endif %}
+
+          <span class="cat-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round">
+              {{ cat.icon|safe }}
+            </svg>
+          </span>
+
+          <span class="cat-name">{{ cat.name }}</span>
+          <span class="cat-tagline">{{ cat.tagline }}</span>
+
+          <span class="cat-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============== WHY US ============== -->
+<section id="wholesale" class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="benefit-card reveal">
+      <span class="benefit-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+      </span>
+      <h3 class="benefit-title">Free pan-India delivery</h3>
+      <p class="benefit-text">Delivered anywhere in India at no extra cost — from Kashmir to Kanyakumari.</p>
+    </div>
+
+    <div class="benefit-card reveal" data-delay="1">
+      <span class="benefit-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l1.5 5.5L19 10l-5.5 1.5L12 17l-1.5-5.5L5 10l5.5-1.5z"/>
+        </svg>
+      </span>
+      <h3 class="benefit-title">Premium print finish</h3>
+      <p class="benefit-text">High-resolution output on imported stocks with lamination options.</p>
+    </div>
+
+    <div class="benefit-card reveal" data-delay="2">
+      <span class="benefit-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/>
+        </svg>
+      </span>
+      <h3 class="benefit-title">Wholesale pricing</h3>
+      <p class="benefit-text">Bulk rates for schools, corporates and event planners. Message us for a quote.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== BIG CTA ============== -->
+<section class="bg-ink text-cream relative overflow-hidden">
+  <div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px]
+              rounded-full bg-gold/10 blur-3xl"></div>
+  <div class="relative max-w-4xl mx-auto px-5 sm:px-8 py-20 sm:py-28 text-center reveal">
+    <p class="eyebrow eyebrow-dark">Custom orders</p>
+    <h2 class="font-display font-bold text-[clamp(2rem,5vw,3.2rem)] leading-tight mt-4">
+      Don't see what you need?<br>
+      <span class="italic font-medium text-gold-light">We'll make it for you.</span>
+    </h2>
+    <p class="mt-5 text-cream/70 max-w-[52ch] mx-auto leading-relaxed">
+      Magazines, business cards, stickers, uni cards, playing cards, spotify books,
+      polaroids, posters, mini scrapbooks, certificates and more. Send us your design
+      and we'll send you a quote within hours.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <a href="#contact" class="btn-shine inline-flex items-center gap-2.5 bg-gold text-ink font-bold
+                                 text-[14px] px-8 py-4 rounded-full hover:bg-gold-light transition-colors shadow-lift">
+        Send Us a Message
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="{% url 'store:category' 'notebooks' %}" class="inline-flex items-center gap-2 border border-cream/25
+                                 text-cream font-semibold text-[14px] px-8 py-4 rounded-full
+                                 hover:bg-cream hover:text-ink transition-colors">
+        Browse Products
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

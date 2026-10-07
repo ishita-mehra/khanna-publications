@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ category.name }} — Khanna Notebooks{% endblock %}
+{% block meta_description %}{{ category.tagline }}. Browse all {{ category.name|lower }} we print at Khanna Notebooks.{% endblock %}
+
+{% block content %}
+
+<!-- ============== BREADCRUMB ============== -->
+<div class="border-b border-ink/5 bg-cream-dark/30">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4">
+    <nav class="breadcrumb flex items-center gap-2 text-[13px]">
+      <a href="{% url 'store:home' %}" class="hover:text-gold-dark transition">Home</a>
+      <svg class="w-3.5 h-3.5 text-ink-muted/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <a href="{% url 'store:home' %}#categories" class="hover:text-gold-dark transition">Shop</a>
+      <svg class="w-3.5 h-3.5 text-ink-muted/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="text-ink font-medium">{{ category.name }}</span>
+    </nav>
+  </div>
+</div>
+
+<!-- ============== CATEGORY HERO ============== -->
+<section class="relative overflow-hidden">
+  <div class="pointer-events-none absolute -top-32 -right-24 w-[420px] h-[420px] rounded-full bg-gold/10 blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-14 pb-12">
+    <div class="reveal flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8">
+      <span class="category-hero-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"
+             stroke-linecap="round" stroke-linejoin="round">
+          {{ category.icon|safe }}
+        </svg>
+      </span>
+
+      <div class="flex-1">
+        <h1 class="font-display font-bold text-[clamp(2rem,5vw,3.2rem)] leading-tight">
+          {{ category.name }}
+        </h1>
+        <p class="mt-3 text-ink-muted text-[16px] max-w-[60ch] leading-relaxed">
+          {{ category.tagline }}. Every item is customisable — send us your design and
+          we'll produce it on premium stock with sharp, professional finishing.
+        </p>
+        <div class="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-ink-muted">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/>
+            </svg>
+            {{ category.products|length }} products
+          </span>
+          <span class="hidden sm:block w-px h-4 bg-ink/15"></span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+            Free pan-India delivery
+          </span>
+          <span class="hidden sm:block w-px h-4 bg-ink/15"></span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/>
+            </svg>
+            No COD
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PRODUCTS GRID ============== -->
+<section class="max-w-7xl mx-auto px-5 sm:px-8 pb-20 sm:pb-24">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+    {% for product in category.products %}
+      <article class="product-card reveal" {% if forloop.counter0 == 1 %}data-delay="1"{% elif forloop.counter0 == 2 %}data-delay="2"{% endif %}>
+
+        <div class="product-img">
+          <svg class="product-img-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            {{ category.icon|safe }}
+          </svg>
+
+          {% if product.badge %}
+            <span class="product-badge">{{ product.badge }}</span>
+          {% endif %}
+        </div>
+
+        <div class="product-body">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <p class="product-desc">{{ product.desc }}</p>
+
+          <div class="product-footer">
+            <div class="product-price">
+              <span class="product-price-amount">Rs. {{ product.price }}</span>
+              <span class="product-price-unit">{{ product.unit }}</span>
+            </div>
+
+            <button type="button"
+                    class="product-order-btn order-btn"
+                    data-product="{{ product.name }}"
+                    aria-label="Order {{ product.name }}">
+              Order
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ============== RELATED CATEGORIES ============== -->
+<section class="bg-cream-dark/40 border-y border-ink/5 py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <h2 class="font-display font-bold text-[clamp(1.4rem,3.5vw,2rem)] leading-tight reveal">
+      Browse other categories
+    </h2>
+
+    <div class="mt-8 flex flex-wrap gap-2.5 reveal" data-delay="1">
+      {% for cat in categories %}
+        {% if cat.slug != category.slug %}
+          <a href="{% url 'store:category' cat.slug %}" class="related-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              {{ cat.icon|safe }}
+            </svg>
+            {{ cat.name }}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============== CUSTOM CTA ============== -->
+<section class="max-w-7xl mx-auto px-5 sm:px-8 py-20 sm:py-24">
+  <div class="relative overflow-hidden rounded-3xl bg-ink text-cream px-8 sm:px-14 py-14 sm:py-20 reveal">
+    <div class="pointer-events-none absolute -top-32 -right-20 w-[420px] h-[420px] rounded-full bg-gold/15 blur-3xl"></div>
+
+    <div class="relative max-w-2xl">
+      <p class="eyebrow eyebrow-dark">Custom {{ category.name|lower }}?</p>
+      <h2 class="font-display font-bold text-[clamp(1.7rem,4vw,2.6rem)] leading-tight mt-3">
+        Need something specific in {{ category.name|lower }}? We'll build it.
+      </h2>
+      <p class="mt-4 text-cream/70 leading-relaxed">
+        Share your design, size and quantity — we'll send a quote within a few hours.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="{% url 'store:home' %}#contact"
+           class="btn-shine inline-flex items-center gap-2.5 bg-gold text-ink font-bold text-[14px]
+                  px-7 py-3.5 rounded-full hover:bg-gold-light transition-colors shadow-lift">
+          Get a Quote
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="{% url 'store:home' %}"
+           class="inline-flex items-center gap-2 border border-cream/25 text-cream font-semibold
+                  text-[14px] px-7 py-3.5 rounded-full hover:bg-cream hover:text-ink transition-colors">
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
